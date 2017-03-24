@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"time"
 )
 
 // Track holds parsed file informations
@@ -60,10 +59,5 @@ func walker(path string, fileInfo os.FileInfo, err error) error {
 
 // Parse walks to a directiory and read all Musik data
 func Parse(path string) error {
-	start := time.Now()
-	err := filepath.Walk(path, walker)
-	elapsed := time.Since(start)
-
-	fmt.Printf("Execution time: %s", elapsed)
-	return err
+	return filepath.Walk(path, walker)
 }
