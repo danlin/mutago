@@ -24,3 +24,7 @@ _testmain.go
 *.prof
 
 debug
+data
+
+.idea
+.vscode

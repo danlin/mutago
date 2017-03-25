@@ -1,9 +1,9 @@
 package parser
 
 import (
-	"io"
 	"crypto/md5"
 	"fmt"
+	"io"
 )
 
 func hash(reader io.Reader) (string, error) {
@@ -12,5 +12,5 @@ func hash(reader io.Reader) (string, error) {
 		return "", err
 	}
 	var result []byte
-	return fmt.Sprintf("%x", hash.Sum(result)) , nil
+	return fmt.Sprintf("%x", hash.Sum(result)), nil
 }

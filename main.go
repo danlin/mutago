@@ -5,14 +5,21 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/danlin/mutago/backend"
 	"github.com/danlin/mutago/parser"
 )
 
 func main() {
+	b, err := backend.Open("./data")
+	if err != nil {
+		panic(err)
+	}
+	defer b.Close()
+
 	flag.Parse()
 	path := flag.Arg(0)
 	if path == "" {
-		fmt.Printf("Usage: mutago path")
+		fmt.Print("Usage: mutago path")
 		return
 	}
 	start := time.Now()

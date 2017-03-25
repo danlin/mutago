@@ -6,17 +6,17 @@ import (
 	"path/filepath"
 )
 
-// Track holds parsed file informations
+// Track holds parsed file information's
 type Track struct {
-	hash string
-	path string
-	tags map[string]string
+	Hash string
+	Path string
+	Tags map[string]string
 	err  error
 }
 
 func parse(path string) (Track, error) {
 	var track Track
-	track.path = path
+	track.Path = path
 	file, err := os.Open(path)
 	if err != nil {
 		track.err = err
@@ -24,13 +24,13 @@ func parse(path string) (Track, error) {
 	}
 	defer file.Close()
 
-	track.tags, err = tags(file)
+	track.Tags, err = tags(file)
 	if err != nil {
 		track.err = err
 		return track, err
 	}
 
-	track.hash, err = hash(file)
+	track.Hash, err = hash(file)
 	if err != nil {
 		track.err = err
 		return track, err
@@ -51,13 +51,13 @@ func walker(path string, fileInfo os.FileInfo, err error) error {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Printf("%s: %s %s", track.path, track.hash, track.tags)
+		fmt.Printf("%s: %s %s", track.Path, track.Hash, track.Tags)
 	}
 
 	return nil
 }
 
-// Parse walks to a directiory and read all Musik data
+// Parse walks to a directory and read all Music data
 func Parse(path string) error {
 	return filepath.Walk(path, walker)
 }
