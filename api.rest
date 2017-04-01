@@ -1,0 +1,10 @@
+GET http://127.0.0.1:9000/tracks
+
+###
+
+POST http://127.0.0.1:9000/tracks
+content-type: application/json
+
+{
+    "path": "C:\Users\danlin\Music\iTunes"
+}

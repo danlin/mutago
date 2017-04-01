@@ -1,29 +1,20 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-	"time"
+	"os"
 
 	"github.com/danlin/mutago/backend"
-	"github.com/danlin/mutago/parser"
+	"github.com/danlin/mutago/cmd"
+)
+
+var (
+	srv *backend.Service
 )
 
 func main() {
-	b, err := backend.Open("./data")
-	if err != nil {
-		panic(err)
+	if err := cmd.RootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(-1)
 	}
-	defer b.Close()
-
-	flag.Parse()
-	path := flag.Arg(0)
-	if path == "" {
-		fmt.Print("Usage: mutago path")
-		return
-	}
-	start := time.Now()
-	parser.Parse(path)
-	elapsed := time.Since(start)
-	fmt.Printf("Execution time: %s", elapsed)
 }
