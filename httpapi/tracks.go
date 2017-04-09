@@ -25,7 +25,7 @@ func getTracks(w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
-type postTracksJson struct {
+type postTracksJSON struct {
 	path string
 }
 
@@ -37,7 +37,7 @@ func postTracks(w http.ResponseWriter, r *http.Request) {
 	if err != io.EOF && err != nil {
 		return
 	}
-	var j postTracksJson
+	var j postTracksJSON
 	err = json.Unmarshal(data, j)
 
 	path := j.path

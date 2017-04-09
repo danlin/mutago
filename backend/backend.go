@@ -12,13 +12,14 @@ type Track struct {
 	Error error
 }
 
-// Backend service
+// Service Backend service
 type Service struct {
 	database *db.DB
 }
 
 const trackFeed string = "Tracks"
 
+// Open a path
 func Open(path string) (*Service, error) {
 	database, err := db.OpenDB(path)
 
